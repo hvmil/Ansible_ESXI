@@ -1,0 +1,22 @@
+---
+- name: Create user on target machines
+  hosts: cent
+  become: true
+  tasks:
+    
+    - name: ensure user exists
+      ansible.builtin.user:
+        name: hdimapanat
+        shell: /bin/bash
+        groups: users
+        state: present
+        create_home: true
+
+    - name: add auth key
+      ansible.builtin.authorized_key:
+        user: hdimapanat
+        key: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDi4Gbv8flTRgJ1TPK6LeLP/5FyzfrRHNzohrr8KLcQl hamil@ubuntu-svr"
+
+    - name: update
+      ansible.builtin.yum:
+        update_cache: true

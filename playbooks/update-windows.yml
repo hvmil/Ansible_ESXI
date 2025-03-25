@@ -1,0 +1,6 @@
+---
+- name: Update Windows Server 22
+  hosts: windows
+  become: true
+  roles:
+    - windows_updates

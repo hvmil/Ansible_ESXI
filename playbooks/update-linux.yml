@@ -1,0 +1,6 @@
+---
+- name: Update all Linux servers
+  hosts: linux
+  become: true
+  roles:
+    - linux_updates
