@@ -1,8 +1,9 @@
 #Enforcing DISA STIG to for Win Server 22
 - name: check for non-NTFS or non-ReFS volumes
   tags: volume
-  ansible.windows.win_shell:
-    Get-Volume | Where-Object { $_.FileSystem -ne 'NTFS' -and $_.FileSystem -ne 'ReFS'}
+  ansible.windows.win_powershell:
+    script: |
+      Get-Volume | Where-Object { $_.FileSystem -ne 'NTFS' -and $_.FileSystem -ne 'ReFS'}
   register: non_ntfs_volumes
 
 - name: display non-compliant volumes
@@ -18,3 +19,9 @@
     data: 1
     type: dword
     state: present
+
+- name: Disable Guest Account
+  tags: guestaccount
+  ansible.windows.win_powershell:
+    script: |
+      Net User guest /active:no
