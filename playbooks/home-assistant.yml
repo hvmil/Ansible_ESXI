@@ -1,0 +1,6 @@
+---
+- name: Deploy Docker and Home Assistant
+  hosts: linux
+  become: true
+  roles:
+    - deploy-hassistant

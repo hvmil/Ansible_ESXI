@@ -1,0 +1,7 @@
+---
+- name: Apply baseline configuration
+  hosts: windows
+  become: false
+  gather_facts: false
+  roles:
+    - install_apps

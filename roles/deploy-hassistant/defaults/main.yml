@@ -1,0 +1,5 @@
+# Default config path on host where Home Assistant container will store data
+---
+ha_container_name: homeassistant
+ha_timezone: America/New_York
+ha_config_path: /opt/homeassistant/config
